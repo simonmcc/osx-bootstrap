@@ -1,0 +1,6 @@
+# http://apple.stackexchange.com/questions/74639/do-etc-resolver-files-work-in-mountain-lion-for-dns-resolution
+#
+# create /etc/resolver/greatershankill.org containing
+# search greatershankill.org
+# nameserver 192.168.28.246
+# nameserver 192.168.28.248

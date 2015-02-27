@@ -1,0 +1,51 @@
+---
+- name: Install required software
+  homebrew: name={{ item }} state=present
+  with_items:
+    - git
+    - gpg
+    - gpg-agent
+    - vim
+    - brew-cask
+    - wget
+    - pwgen
+    - tree
+    - mtr
+# brew install lastpass-cli --with-pinentr
+
+- name: Install ancillary applications
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+      - firefox
+      - google-chrome
+      - google-hangouts
+      - virtualbox
+      - vagrant
+      - quicksilver
+      - evernote
+      - skitch
+      - hipchat
+      - iterm2
+      - dropbox
+      - tunnelblick
+      - lastpass
+      - xmarks-safari
+      - fluid
+      - divvy
+      - rescuetime
+      - chefdk
+      - mou
+      - choosy
+      - cleanmymac
+      - macvim
+
+- name: clone dotfiles (make sure ~/.ssh is valid!)
+  git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files
+
+- name: link to everything in ~/dot-files
+  command: ./setup.sh
+  args:
+    chdir: /Users/mccartsi/dot-files
+    creates: /Users/mccartsi/.vimrc
+
+- include: python.yml
