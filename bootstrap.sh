@@ -18,6 +18,9 @@ if [[ ! -x /usr/local/bin/brew ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# install my homebrew-versions fork
+# brew tap simonmcc/homebrew-versions
+
 # Modify the PATH
 export PATH=/usr/local/bin:$PATH
 

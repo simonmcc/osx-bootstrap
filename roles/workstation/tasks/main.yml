@@ -11,6 +11,11 @@
     - pwgen
     - tree
     - mtr
+    - ncftp
+    - pandoc
+    - lynx
+    - mosh
+    - ssh-copy-id
 # brew install lastpass-cli --with-pinentr
 
 - name: Install ancillary applications
@@ -33,11 +38,13 @@
       - fluid
       - divvy
       - rescuetime
-      - chefdk
+      - chefdk036
       - mou
       - choosy
       - cleanmymac
       - macvim
+      - totalfinder
+      - cyberduck
 
 - name: clone dotfiles (make sure ~/.ssh is valid!)
   git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files
