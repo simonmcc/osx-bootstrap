@@ -10,7 +10,7 @@ Other sources:
 * https://raw.githubusercontent.com/mathiasbynens/dotfiles/master/.osx
 * https://github.com/ZogStriP/dotfiles/blob/master/setup/set-defaults.sh
 * http://wiki.eri.ucsb.edu/sysadm/OS_X_CLI
-*
+* https://github.com/spencergibb/battleschool
 
 
 App Store Apps:

@@ -48,4 +48,7 @@
     chdir: /Users/mccartsi/dot-files
     creates: /Users/mccartsi/.vimrc
 
+- name: sudo access for vagrant-hostmanager
+  copy: src=vagrant_hostmanager dest=/etc/sudoers.d/vagrant_hostmanager
+
 - include: python.yml

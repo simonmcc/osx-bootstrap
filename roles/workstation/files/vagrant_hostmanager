@@ -1,0 +1,2 @@
+Cmnd_Alias VAGRANT_HOSTMANAGER_UPDATE = /bin/cp /Users/*/.vagrant.d/tmp/hosts.local /etc/hosts
+%staff ALL=(root) NOPASSWD: VAGRANT_HOSTMANAGER_UPDATE
