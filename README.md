@@ -1,5 +1,7 @@
 Based on http://il.luminat.us/blog/2014/04/19/how-i-fully-automated-os-x-with-ansible/
 
+Install CA Cert: https://derflounder.wordpress.com/2011/03/13/adding-new-trusted-root-certificates-to-system-keychain/
+
 Other sources:
 * https://github.com/hjuutilainen/dotfiles
 * https://github.com/geerlingguy/dotfiles/blob/master/.osx
@@ -11,6 +13,7 @@ Other sources:
 * https://github.com/ZogStriP/dotfiles/blob/master/setup/set-defaults.sh
 * http://wiki.eri.ucsb.edu/sysadm/OS_X_CLI
 * https://github.com/spencergibb/battleschool
+* http://www.nickhammond.com/automating-development-environment-ansible/
 
 
 App Store Apps:
@@ -21,3 +24,5 @@ App Store Apps:
 * https://itunes.apple.com/gb/app/remoter/id486899236?mt=12
 * https://itunes.apple.com/gb/app/telephone/id406825478?mt=12
 * https://itunes.apple.com/gb/app/lastpass-password-manager/id926036361?mt=12
+* https://itunes.apple.com/gb/app/battery-monitor/id413678017?mt=12
+* https://itunes.apple.com/gb/app/parallels-2x-rdp-remote-desktop/id600925318?mt=12
