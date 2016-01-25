@@ -18,8 +18,16 @@ if [[ ! -x /usr/local/bin/brew ]]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# install my homebrew-versions fork
+# OPTIONAL: install my homebrew-versions fork
 # brew tap simonmcc/homebrew-versions
+set +e
+CASK_INSTALLED_OUTPUT=`brew cask list`
+CASK_EC=$?
+set -e
+if [[ ${CASK_EC} -ne 0 ]]; then
+    echo "Info   | Install   | homebrew"
+    brew install caskroom/cask/brew-cask
+fi
 
 # Modify the PATH
 export PATH=/usr/local/bin:$PATH
@@ -33,7 +41,7 @@ fi
 # Download and install python
 if [[ ! -x /usr/local/bin/python ]]; then
     echo "Info   | Install   | python"
-    brew install python --framework --with-brewed-openssl
+    brew install python
 fi
 
 # Download and install Ansible
