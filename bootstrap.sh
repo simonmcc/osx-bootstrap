@@ -19,7 +19,8 @@ if [[ ! -x /usr/local/bin/brew ]]; then
 fi
 
 # OPTIONAL: install my homebrew-versions fork
-# brew tap simonmcc/homebrew-versions
+brew tap simonmcc/homebrew-versions
+
 set +e
 CASK_INSTALLED_OUTPUT=`brew cask list`
 CASK_EC=$?

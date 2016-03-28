@@ -1,4 +1,10 @@
 ---
+- file: path=/etc/sudoers.d state=directory mode=0755
+  become: true
+- name: sudo access for vagrant-hostmanager
+  copy: src=vagrant_hostmanager dest=/etc/sudoers.d/vagrant_hostmanager
+  become: true
+
 - name: Install required software
   homebrew: name={{ item }} state=present
   with_items:
@@ -38,7 +44,7 @@
       - fluid
       - divvy
       - rescuetime
-      - chefdk036
+#      - chefdk036
       - mou
       - choosy
       - cleanmymac
@@ -47,15 +53,12 @@
       - cyberduck
 
 - name: clone dotfiles (make sure ~/.ssh is valid!)
-  git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files
+  git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files update=no
 
 - name: link to everything in ~/dot-files
   command: ./setup.sh
   args:
     chdir: /Users/mccartsi/dot-files
     creates: /Users/mccartsi/.vimrc
-
-- name: sudo access for vagrant-hostmanager
-  copy: src=vagrant_hostmanager dest=/etc/sudoers.d/vagrant_hostmanager
 
 - include: python.yml
