@@ -29,6 +29,42 @@ App Store Apps:
 * [https://itunes.apple.com/gb/app/battery-monitor/id413678017?mt=12]()
 * [https://itunes.apple.com/gb/app/parallels-2x-rdp-remote-desktop/id600925318?mt=12]()
 
+
+## App Store Apps via MAS
+At last! a CLI client to MAS: [https://github.com/argon/mas]()
+
+```
+brew install argon/mas/mas
+```
+
+Current apps:
+
+```
+$ mas list
+628673206 iStats
+405399194 Kindle
+409183694 Keynote
+580788158 VSD Viewer
+468946727 PeakHour
+486899236 Remoter
+823766827 OneDrive
+406825478 Telephone
+410628904 Wunderlist
+557168941 Tweetbot
+413678017 BatteryMonitor
+505795901 UK Salary Calculator
+488764545 The Clock
+926036361 LastPass
+600925318 Parallels Client
+```
+
+Install in a blast (hopefully ansible support coming soon, puppet provider already out):
+
+```
+$ for p in 628673206 405399194 409183694 580788158 468946727 486899236 823766827 406825478 410628904 557168941 413678017 505795901 488764545 926036361 600925318 ; do mas install $p ; done
+```
+
+
 Trouble shooting
 ================
 
