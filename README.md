@@ -30,6 +30,10 @@ App Store Apps:
 * [https://itunes.apple.com/gb/app/parallels-2x-rdp-remote-desktop/id600925318?mt=12]()
 
 
+## DMG apps
+
+* https://www.myroom.hpe.com/downloadfiles/10.4.0.0174-installmyroomMacIntel.dmg
+
 ## App Store Apps via MAS
 At last! a CLI client to MAS: [https://github.com/argon/mas]()
 
