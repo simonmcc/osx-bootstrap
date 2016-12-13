@@ -2,8 +2,8 @@
 
 set -e
 
-SRC_DIRECTORY="$HOME/src"
-ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"
+BREW_PYTHON=0
+
 ANSIBLE_CONFIGURATION_DIRECTORY="$HOME/.ansible.d"
 
 # Download and install Command Line Tools
@@ -19,7 +19,7 @@ if [[ ! -x /usr/local/bin/brew ]]; then
 fi
 
 # OPTIONAL: install my homebrew-versions fork
-brew tap simonmcc/homebrew-versions
+# brew tap simonmcc/homebrew-versions
 
 set +e
 CASK_INSTALLED_OUTPUT=`brew cask list`
@@ -40,14 +40,24 @@ if [[ ! -x /usr/local/bin/git ]]; then
 fi
 
 # Download and install python
-if [[ ! -x /usr/local/bin/python ]]; then
+if [ ${BREW_PYTHON} -eq 1 -a ! -x /usr/local/bin/python ]; then
     echo "Info   | Install   | python"
     brew install python
 fi
 
 # Download and install Ansible
-if [[ ! -x /usr/local/bin/ansible ]]; then
-    brew install ansible
+set +e
+ANSIBLE_PYTHON=$(which ansible)
+set -e
+if [ -z "${ANSIBLE_PYTHON}" ]; then
+    # brew install ansible
+    set +e
+    PIP_BIN=$(which pip)
+    set -e
+    if [ -z "${PIP_BIN}"]; then
+	sudo easy_install pip
+    fi
+    sudo pip install ansible
 fi
 
 # Provision the box

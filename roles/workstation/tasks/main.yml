@@ -12,7 +12,7 @@
     - gpg
     - gpg-agent
     - vim
-    - brew-cask
+    - cask
     - wget
     - pwgen
     - tree
@@ -35,12 +35,12 @@
       - quicksilver
       - evernote
       - skitch
-      - hipchat
+#      - hipchat
       - iterm2
-      - dropbox
+#      - dropbox
       - tunnelblick
-      - lastpass
-      - xmarks-safari
+#      - lastpass
+#      - xmarks-safari
       - fluid
       - divvy
       - rescuetime
@@ -49,16 +49,18 @@
       - choosy
       - cleanmymac
       - macvim
-      - totalfinder
+#      - totalfinder
       - cyberduck
 
 - name: clone dotfiles (make sure ~/.ssh is valid!)
   git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files update=no
+  when: false
 
 - name: link to everything in ~/dot-files
   command: ./setup.sh
   args:
     chdir: /Users/mccartsi/dot-files
     creates: /Users/mccartsi/.vimrc
+  when: false
 
 - include: python.yml
