@@ -1,5 +1,19 @@
 - hosts: all
-  roles:
-      - role: workstation
   vars:
       - home: /Users/{{ ansible_user_id }}
+      - mas_installed_apps:
+          - { id: 443987910, name: "1Password" }
+          - { id: 405399194, name: "Kindle (1.23.3)" }
+          - { id: 441258766, name: "Magnet (2.4)" }
+          - { id: 1295203466, name: "Microsoft Remote Desktop (10.2.3)" }
+          - { id: 425955336, name: "Skitch (2.8.2)" }
+          - { id: 406056744, name: "Evernote (7.5.2)" }
+          - { id: 634108295, name: "Acorn (4.5.8)" }
+          - { id: 1147396723, name: "WhatsApp (0.3.1242)" }
+          - { id: 413678017, name: "BatteryMonitor (2.8)" }
+          - { id: 488764545, name: "The Clock (4.0)" }
+
+  roles:
+      - workstation
+      - geerlingguy.homebrew
+      - geerlingguy.mas

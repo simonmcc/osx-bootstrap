@@ -1,16 +1,21 @@
 ---
 - file: path=/etc/sudoers.d state=directory mode=0755
   become: true
+
 - name: sudo access for vagrant-hostmanager
-  copy: src=vagrant_hostmanager dest=/etc/sudoers.d/vagrant_hostmanager
+  template: src=vagrant_hostmanager dest=/etc/sudoers.d/vagrant_hostmanager
   become: true
 
-- name: Install required software
+- name: Install required software (Homebrew)
   homebrew: name={{ item }} state=present
   with_items:
-    - git
-    - gpg
-    - gpg-agent
+    - awscli
+    - dos2unix
+    - jq
+    - terraform
+    - terraforming
+    - shellcheck
+    - git-crypt
     - vim
     - cask
     - wget
@@ -18,49 +23,23 @@
     - tree
     - mtr
     - ncftp
-    - pandoc
-    - lynx
-    - mosh
     - ssh-copy-id
-# brew install lastpass-cli --with-pinentr
+    - mas
 
-- name: Install ancillary applications
+- name: Install required software (Homebrew casks)
   homebrew_cask: name={{ item }} state=present
   with_items:
-      - firefox
-      - google-chrome
-      - google-hangouts
-      - virtualbox
-      - vagrant
-      - quicksilver
-      - evernote
-      - skitch
-#      - hipchat
+      - 1password
+      - alfred
+      - blue-jeans
+      - docker
+      - gpg-suite
       - iterm2
-#      - dropbox
-      - tunnelblick
-#      - lastpass
-#      - xmarks-safari
-      - fluid
-      - divvy
-      - rescuetime
-#      - chefdk036
-      - mou
-      - choosy
-      - cleanmymac
+      - macdown
       - macvim
-#      - totalfinder
-      - cyberduck
+      - virtualbox
+# virtualbox-extension-pack needs the sudo password
+# brew cask install virtualbox-extension-pack
+      - vagrant
 
-- name: clone dotfiles (make sure ~/.ssh is valid!)
-  git: repo=ssh://git@github.com/simonmcc/dot-files.git dest={{ home }}/dot-files update=no
-  when: false
-
-- name: link to everything in ~/dot-files
-  command: ./setup.sh
-  args:
-    chdir: /Users/mccartsi/dot-files
-    creates: /Users/mccartsi/.vimrc
-  when: false
-
-- include: python.yml
+# - include: python.yml
