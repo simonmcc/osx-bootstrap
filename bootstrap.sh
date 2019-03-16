@@ -3,8 +3,12 @@
 set -e
 
 BREW_PYTHON=0
-
 ANSIBLE_CONFIGURATION_DIRECTORY="$HOME/.ansible.d"
+
+function command_exists()
+{
+    type -P "$1" >/dev/null 2>&1
+}
 
 # Download and install Command Line Tools
 if [[ ! -x /usr/bin/gcc ]]; then
@@ -34,31 +38,42 @@ fi
 export PATH=/usr/local/bin:$PATH
 
 # Download and install git
-if [[ ! -x /usr/local/bin/git ]]; then
-    echo "Info   | Install   | git"
-    brew install git
-fi
+# TODO: Which do we prefer? OSX or homebrew's git?
+GIT_OSX=/usr/bin/git
+GIT_BREW=/usr/local/bin/git
+
+#if [[ ! -x ${GIT_BREW} ]]; then
+#    echo "Info   | Install   | git"
+#    brew install git
+#fi
 
 # Download and install python
 if [ ${BREW_PYTHON} -eq 1 -a ! -x /usr/local/bin/python ]; then
     echo "Info   | Install   | python"
     brew install python
 fi
-
-# Download and install Ansible
-set +e
-ANSIBLE_PYTHON=$(which ansible)
-set -e
-if [ -z "${ANSIBLE_PYTHON}" ]; then
-    # brew install ansible
-    set +e
-    PIP_BIN=$(which pip)
-    set -e
-    if [ -z "${PIP_BIN}"]; then
-	sudo easy_install pip
-    fi
-    sudo pip install ansible
+if ! command_exists wget ; then
+  brew install wget
 fi
 
+# Download and install Ansible (including pip & virtualenv if required)
+if ! command_exists pip ; then
+    wget -O get-pip.py https://bootstrap.pypa.io/get-pip.py
+    sudo -H python get-pip.py
+fi
+
+if ! command_exists virtualenv ; then
+    sudo -H pip install virtualenv
+fi
+
+if ! command_exists ansible ; then
+    virtualenv .venv
+    . .venv/bin/activate
+    pip install ansible
+fi
+
+# install external ansible roles
+ansible-galaxy install --roles-path roles/ -r requirements.yml
+
 # Provision the box
-ansible-playbook --ask-sudo-pass -i localhost.ini site.yml --connection=local
+ansible-playbook --ask-become-pass -i localhost.ini site.yml --connection=local
