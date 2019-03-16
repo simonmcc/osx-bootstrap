@@ -1,7 +1,16 @@
+#!/bin/bash
+# 
+# Set sensible defaults for macOS power users
+# 
+
+
+# set the scroll direction to be old school, down for down.
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Never sleep when connected to the Power Adapter
+sudo pmset -c sleep 0
 
-#!/bin/bash
+
 
 # ==============================================
 # .osx-user-defaults
@@ -37,7 +46,7 @@ chflags hidden "${HOME}/bin"
 echo "Setting NSGlobalDomain preferences"
 
 # Locale
-defaults write NSGlobalDomain AppleLocale -string "fi_FI"
+#defaults write NSGlobalDomain AppleLocale -string "fi_FI"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
@@ -89,8 +98,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 5
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName -string "Flurry" path -string "/System/Library/Screen Savers/Flurry.saver" type -int 0
 
 # Hot corners -> bottom left -> start screen saver
-defaults write com.apple.dock "wvous-bl-corner" -int 5
-defaults write com.apple.dock "wvous-bl-modifier" -int 0
+#defaults write com.apple.dock "wvous-bl-corner" -int 5
+#defaults write com.apple.dock "wvous-bl-modifier" -int 0
 
 
 # ==============================================
@@ -103,13 +112,13 @@ defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Secondary click:
 # Possible values: OneButton, TwoButton, TwoButtonSwapped
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string TwoButton
+#defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseButtonMode -string TwoButton
 
 # Smart zoom enabled, double-tap with one finger (set to 0 to disable)
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 1
+#defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture -int 1
 
 # Double-tap with two fingers to Mission Control (set to 0 to disable)
-defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDoubleTapGesture -int 3
+#defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseTwoFingerDoubleTapGesture -int 3
 
 # Two finger horizontal swipe
 # 0 = Swipe between pages with one finger
@@ -134,16 +143,16 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
 
 # Enable three finger tap (look up)
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerTapGesture -int 2
 
 # Disable three finger drag
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool false
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool false
 
 # Zoom in or out
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadPinch -bool true
 
 # Smart zoom, double-tap with two fingers
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
+#defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadTwoFingerDoubleTapGesture -bool true
 
 # Rotate
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRotate -bool true
@@ -277,10 +286,10 @@ defaults write com.apple.digihub com.apple.digihub.dvd.video.appeared -dict acti
 echo "Setting Archive Utility preferences"
 
 # Move archives to trash after extraction
-defaults write com.apple.archiveutility "dearchive-move-after" -string "~/.Trash"
+#defaults write com.apple.archiveutility "dearchive-move-after" -string "~/.Trash"
 
 # Don't reveal extracted items
-defaults write com.apple.archiveutility "dearchive-reveal-after" -bool false
+#defaults write com.apple.archiveutility "dearchive-reveal-after" -bool false
 
 
 # ==============================================
@@ -293,76 +302,6 @@ defaults write com.apple.dt.Xcode DVTTextIndentUsingTabs -bool false
 
 # Show tab bar
 defaults write com.apple.dt.Xcode AlwaysShowTabBar -bool true
-
-
-# ==============================================
-# BBEdit and TextWrangler
-# ==============================================
-echo "Setting BBEdit and TextWrangler preferences"
-
-function set_barebones_prefs() {
-    defaults write com.barebones.bbedit "$@"
-    defaults write com.barebones.textwrangler "$@"
-}
-
-# Expand tabs to spaces (except in XML)
-set_barebones_prefs EditorAutoExpandTabs -bool true
-set_barebones_prefs EditorAutoExpandTabs_XML -bool false
-
-# In XML, show invisibles and soft wrap text
-set_barebones_prefs EditorShowInvisibleCharacters_XML -bool true
-set_barebones_prefs EditorSoftWrap_XML -bool true
-
-# Default tab width is 4 spaces
-set_barebones_prefs EditorDefaultTabWidth -int 4
-
-# Ruby tab width is 2 spaces
-set_barebones_prefs EditorDefaultTabWidth_Ruby -int 2
-
-# Automatically indent
-set_barebones_prefs EditorAutoIndent -bool true
-
-# Don't check spelling
-set_barebones_prefs EditorCheckSpellingAsYouType -bool false
-
-# Don't suggest nonsense when I'm writing code
-set_barebones_prefs IncludeDictionaryWordsInCompletionList -bool false
-
-# Open documents in new window
-set_barebones_prefs NewAndOpenPrefersSharedWindow -bool false
-
-# Do nothing when app becomes active
-set_barebones_prefs StartupAndResumeAction -int 1
-
-# Ensure that file ends with a line break
-set_barebones_prefs EnsureTrailingLineBreak -bool true
-
-# Don't strip trailing white space
-set_barebones_prefs StripTrailingWhitespace -bool false
-
-# Complete with ESC
-set_barebones_prefs UseEscapeKeyAsCompletionTrigger -boolean true
-
-# No default filename extensions
-set_barebones_prefs EnableDefaultFilenameExtensions -bool false
-
-# Double-clicking on a delimiter includes the delimiters in the resulting selection
-set_barebones_prefs BalanceIncludesDelimiters -bool true
-
-# Don't try to reopen files if it requires mounting volumes
-set_barebones_prefs AllowVolumeMount -bool false
-
-# Allow update checking
-set_barebones_prefs SUSoftwareUpdateEnabled -bool true
-set_barebones_prefs SUSoftwareUpdateHasCompletedFirstRun -bool true
-
-# Add some default mappings
-set_barebones_prefs BBSuffixMapOverrides -array-add '{ fileExtension = recipe; languageName = { languageCode = "XML "; languageName = XML; }; }'
-set_barebones_prefs BBSuffixMapOverrides -array-add '{ fileExtension = pkginfo; languageName = { languageCode = "XML "; languageName = XML; }; }'
-set_barebones_prefs BBSuffixMapOverrides -array-add '{ fileExtension = pp; languageName = { languageCode = Ruby; languageName = Ruby; }; }'
-
-CFPreferencesAppSynchronize "com.barebones.bbedit"
-CFPreferencesAppSynchronize "com.barebones.textwrangler"
 
 
 # ==============================================
@@ -492,8 +431,8 @@ defaults write com.apple.Safari ShowStatusBar -bool true
 # Show favorites bar
 defaults write com.apple.Safari ShowFavoritesBar -bool true
 
-# Don't show tab bar
-defaults write com.apple.Safari AlwaysShowTabBar -bool false
+# Show tab bar
+defaults write com.apple.Safari AlwaysShowTabBar -bool true
 
 
 # General settings
@@ -651,14 +590,12 @@ function killallApps() {
 
     appsToKill=(
     "Activity Monitor"
-    "BBEdit"
     "Calendar"
     "Contacts"
     "Dashboard"
     "Disk Utility"
     "Safari"
     "System Preferences"
-    "TextWrangler"
     "Xcode"
     )
 
