@@ -14,7 +14,11 @@
           - { id: 937984704,  name: "Amphetamine (4.1.5)" }
           - { id: 488764545,  name: "The Clock (4.0.5)" }
           - { id: 1295203466, name: "Microsoft Remote Desktop (10.2.9)" }
+          - { id: 405399194,  name: "Kindle (1.23.3)" }
+          - { id: 425955336,  name: "Skitch (2.8.2)" }
+          - { id: 1147396723, name: "WhatsApp (0.3.1242)" }
 
   roles:
       - workstation
-      - mas
+      - geerlingguy.homebrew
+      - geerlingguy.mas

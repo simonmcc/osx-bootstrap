@@ -9,6 +9,13 @@
 - name: Install required software (Homebrew)
   homebrew: name={{ item }} state=present
   with_items:
+    - awscli
+    - dos2unix
+    - jq
+    - terraform
+    - terraforming
+    - shellcheck
+    - git-crypt
     - vim
     - cask
     - wget
@@ -27,14 +34,10 @@
 # brew cask install virtualbox-extension-pack
       - vagrant
       - alfred
-#      - skitch
       - iterm2
-#      - dropbox
-#      - tunnelblick
       - macdown
       - macvim
 #      - cyberduck
-      - 1password
       - gpg-suite
 
 # - include: python.yml

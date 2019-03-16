@@ -56,14 +56,25 @@ if ! command_exists wget ; then
   brew install wget
 fi
 
+#
 # Download and install Ansible (including pip & virtualenv if required)
+#
+
 if ! command_exists pip ; then
-    wget -O get-pip.py https://bootstrap.pypa.io/get-pip.py
-    sudo -H python get-pip.py
+    wget --quiet -O get-pip.py https://bootstrap.pypa.io/get-pip.py && python get-pip.py --user
+    # Linux Path
+    export PATH=~/.local/bin:$PATH
+    # OSX/macOS
+    export PATH=~/Library/Python/2.7/bin:$PATH
+fi
+
+if [ -d ~/Library/Python/2.7/bin ] ; then
+    export PATH=~/Library/Python/2.7/bin:$PATH
 fi
 
 if ! command_exists virtualenv ; then
-    sudo -H pip install virtualenv
+    #sudo -H ~/Library/Python/2.7/bin/pip install virtualenv
+    pip install virtualenv
 fi
 
 if ! command_exists ansible ; then
