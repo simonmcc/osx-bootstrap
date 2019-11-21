@@ -1,3 +1,9 @@
 .DS_Store
 ._*
 site.retry
+.fseventsd/
+.venv/
+roles/geerlingguy.homebrew/
+roles/geerlingguy.mas/
+roles/elliotweiser.osx-command-line-tools/
+get-pip.py
